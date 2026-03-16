@@ -60,11 +60,11 @@ begin
     lQuery.SQL.Text :=
       'UPDATE produtos SET nome=:nome, descricao=:descricao, ' +
       'preco=:preco, estoque=:estoque WHERE id=:id';
-    lQuery.ParamByName('nome').AsString      := Produto.Nome;
+    lQuery.ParamByName('nome').AsString := Produto.Nome;
     lQuery.ParamByName('descricao').AsString := Produto.Descricao;
-    lQuery.ParamByName('preco').AsCurrency   := Produto.Preco;
-    lQuery.ParamByName('estoque').AsInteger  := Produto.Estoque;
-    lQuery.ParamByName('id').AsInteger       := Produto.Id;
+    lQuery.ParamByName('preco').AsCurrency := Produto.Preco;
+    lQuery.ParamByName('estoque').AsInteger := Produto.Estoque;
+    lQuery.ParamByName('id').AsInteger := Produto.Id;
 
     lQuery.ExecSQL;
   finally
@@ -98,19 +98,22 @@ begin
   lQuery := TFDQuery.Create(nil);
   try
     lQuery.Connection := FConn;
-    lQuery.SQL.Text := 'SELECT id, nome, descricao, preco, estoque FROM produtos ORDER BY nome';
+
+    lQuery.SQL.Text := 'SELECT id, nome, descricao, preco, estoque FROM produtos ORDER BY id';
     lQuery.Open;
     while not lQuery.Eof do
-    begin
-      lProduto := TProduto.Create;
-      lProduto.Id       := lQuery.FieldByName('id').AsInteger;
-      lProduto.Nome     := lQuery.FieldByName('nome').AsString;
-      lProduto.Descricao:= lQuery.FieldByName('descricao').AsString;
-      lProduto.Preco    := lQuery.FieldByName('preco').AsCurrency;
-      lProduto.Estoque  := lQuery.FieldByName('estoque').AsInteger;
-      Result.Add(lProduto);
-      lQuery.Next;
-    end;
+      begin
+        lProduto := TProduto.Create;
+        lProduto.Id := lQuery.FieldByName('id').AsInteger;
+        lProduto.Nome := lQuery.FieldByName('nome').AsString;
+        lProduto.Descricao := lQuery.FieldByName('descricao').AsString;
+        lProduto.Preco := lQuery.FieldByName('preco').AsCurrency;
+        lProduto.Estoque := lQuery.FieldByName('estoque').AsInteger;
+
+        Result.Add(lProduto);
+
+        lQuery.Next;
+      end;
   finally
     lQuery.Free;
   end;
@@ -128,14 +131,14 @@ begin
     lQuery.ParamByName('id').AsInteger := Id;
     lQuery.Open;
     if not lQuery.IsEmpty then
-    begin
-      Result := TProduto.Create;
-      Result.Id       := lQuery.FieldByName('id').AsInteger;
-      Result.Nome     := lQuery.FieldByName('nome').AsString;
-      Result.Descricao:= lQuery.FieldByName('descricao').AsString;
-      Result.Preco    := lQuery.FieldByName('preco').AsCurrency;
-      Result.Estoque  := lQuery.FieldByName('estoque').AsInteger;
-    end;
+      begin
+        Result := TProduto.Create;
+        Result.Id := lQuery.FieldByName('id').AsInteger;
+        Result.Nome := lQuery.FieldByName('nome').AsString;
+        Result.Descricao := lQuery.FieldByName('descricao').AsString;
+        Result.Preco := lQuery.FieldByName('preco').AsCurrency;
+        Result.Estoque := lQuery.FieldByName('estoque').AsInteger;
+      end;
   finally
     lQuery.Free;
   end;
