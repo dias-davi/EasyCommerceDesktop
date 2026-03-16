@@ -1,2 +1,6 @@
 /proj/Win32
 /src/view/__history
+/src/connection/__history
+/src/model/__history
+/src/repository/__history
+/src/service/__history

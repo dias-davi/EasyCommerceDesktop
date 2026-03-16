@@ -2,10 +2,22 @@ program EasyCommerceDesktop;
 
 uses
   Vcl.Forms,
-  Tela.Principal in '..\src\view\Tela.Principal.pas' {frmInicio},
-  Tela.CRUD.Base in '..\src\view\Tela.CRUD.Base.pas' {frmCRUD},
-  Tela.CadastrareEditar in '..\src\view\Tela.CadastrareEditar.pas' {frmCadastroEEdicao},
-  Tela.Produtos.Crud in '..\src\view\Tela.Produtos.Crud.pas' {frmProdutos};
+  FireDAC.DApt,
+  Tela.Principal        in '..\src\view\Tela.Principal.pas'        {frmInicio},
+  Tela.Produtos.Crud    in '..\src\view\Tela.Produtos.Crud.pas'    {frmProdutos},
+  Tela.Produto.Form     in '..\src\view\Tela.Produto.Form.pas'     {frmProdutoForm},
+  Tela.Vendas.Crud      in '..\src\view\Tela.Vendas.Crud.pas'      {frmVendas},
+  Tela.Venda.Form       in '..\src\view\Tela.Venda.Form.pas'       {frmVendaForm},
+  Tela.PDV              in '..\src\view\Tela.PDV.pas'              {frmPDV},
+  DB.DataModule         in '..\src\connection\DB.DataModule.pas'  {dmDB: TDataModule},
+  DB.Connection         in '..\src\connection\DB.Connection.pas',
+  Model.Produto         in '..\src\model\Model.Produto.pas',
+  Model.Venda           in '..\src\model\Model.Venda.pas',
+  Repository.Produto    in '..\src\repository\Repository.Produto.pas',
+  Repository.Venda      in '..\src\repository\Repository.Venda.pas',
+  Service.Produto       in '..\src\service\Service.Produto.pas',
+  Service.Venda         in '..\src\service\Service.Venda.pas',
+  Utils.Moeda           in '..\src\utils\Utils.Moeda.pas';
 
 {$R *.res}
 
@@ -13,8 +25,5 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmInicio, frmInicio);
-  Application.CreateForm(TfrmCRUD, frmCRUD);
-  Application.CreateForm(TfrmCadastroEEdicao, frmCadastroEEdicao);
-  Application.CreateForm(TfrmProdutos, frmProdutos);
   Application.Run;
 end.

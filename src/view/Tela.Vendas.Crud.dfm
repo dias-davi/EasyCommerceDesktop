@@ -1,7 +1,7 @@
-object frmProdutos: TfrmProdutos
+object frmVendas: TfrmVendas
   Left = 0
   Top = 0
-  Caption = 'Cadastro de Produtos'
+  Caption = 'Cadastro de Vendas'
   ClientHeight = 480
   ClientWidth = 640
   Color = clBtnFace
@@ -10,7 +10,7 @@ object frmProdutos: TfrmProdutos
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  Position = poScreenCenter
+  Position = poMainFormCenter
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   TextHeight = 13
@@ -18,7 +18,7 @@ object frmProdutos: TfrmProdutos
     Left = 0
     Top = 0
     Width = 640
-    Height = 73
+    Height = 89
     Align = alTop
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
@@ -27,12 +27,12 @@ object frmProdutos: TfrmProdutos
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    object btnNovo: TButton
-      Left = 8
-      Top = 17
-      Width = 75
+    object btnNova: TButton
+      Left = 10
+      Top = 25
+      Width = 111
       Height = 41
-      Caption = 'Novo'
+      Caption = 'Nova Venda'
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -16
@@ -40,14 +40,14 @@ object frmProdutos: TfrmProdutos
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
-      OnClick = btnNovoClick
+      OnClick = btnNovaClick
     end
-    object btnEditar: TButton
-      Left = 89
-      Top = 17
-      Width = 75
+    object btnVisualizar: TButton
+      Left = 137
+      Top = 25
+      Width = 112
       Height = 41
-      Caption = 'Editar'
+      Caption = 'Visualizar'
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -16
@@ -55,12 +55,12 @@ object frmProdutos: TfrmProdutos
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 1
-      OnClick = btnEditarClick
+      OnClick = btnVisualizarClick
     end
     object btnExcluir: TButton
-      Left = 170
-      Top = 17
-      Width = 75
+      Left = 264
+      Top = 25
+      Width = 113
       Height = 41
       Caption = 'Excluir'
       Font.Charset = ANSI_CHARSET
@@ -73,9 +73,9 @@ object frmProdutos: TfrmProdutos
       OnClick = btnExcluirClick
     end
     object btnSair: TButton
-      Left = 557
-      Top = 17
-      Width = 75
+      Left = 536
+      Top = 25
+      Width = 93
       Height = 41
       Caption = 'Sair'
       Font.Charset = ANSI_CHARSET
@@ -88,11 +88,11 @@ object frmProdutos: TfrmProdutos
       OnClick = btnSairClick
     end
   end
-  object sgProdutos: TStringGrid
+  object sgVendas: TStringGrid
     Left = 0
-    Top = 73
+    Top = 89
     Width = 640
-    Height = 407
+    Height = 391
     Align = alClient
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
@@ -101,7 +101,7 @@ object frmProdutos: TfrmProdutos
     Font.Style = []
     ParentFont = False
     TabOrder = 1
-    ExplicitLeft = 32
-    ExplicitTop = 233
+    ExplicitTop = 41
+    ExplicitHeight = 439
   end
 end

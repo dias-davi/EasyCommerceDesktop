@@ -127,18 +127,34 @@
             <Form>frmInicio</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\src\view\Tela.CRUD.Base.pas">
-            <Form>frmCRUD</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="..\src\view\Tela.CadastrareEditar.pas">
-            <Form>frmCadastroEEdicao</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="..\src\view\Tela.Produtos.Crud.pas">
             <Form>frmProdutos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\src\view\Tela.Produto.Form.pas">
+            <Form>frmProdutoForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\src\view\Tela.Vendas.Crud.pas">
+            <Form>frmVendas</Form>
+        </DCCReference>
+        <DCCReference Include="..\src\view\Tela.Venda.Form.pas">
+            <Form>frmVendaForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\src\view\Tela.PDV.pas">
+            <Form>frmPDV</Form>
+        </DCCReference>
+        <DCCReference Include="..\src\connection\DB.DataModule.pas">
+            <Form>dmDB</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\src\connection\DB.Connection.pas"/>
+        <DCCReference Include="..\src\model\Model.Produto.pas"/>
+        <DCCReference Include="..\src\model\Model.Venda.pas"/>
+        <DCCReference Include="..\src\repository\Repository.Produto.pas"/>
+        <DCCReference Include="..\src\repository\Repository.Venda.pas"/>
+        <DCCReference Include="..\src\service\Service.Produto.pas"/>
+        <DCCReference Include="..\src\service\Service.Venda.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

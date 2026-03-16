@@ -3,22 +3,25 @@ unit Tela.Principal;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons, VCLTee.TeCanvas;
 
 type
   TfrmInicio = class(TForm)
+    pnlMid: TPanel;
     btnProdutos: TButton;
     btnVendas: TButton;
-    pnlMid: TPanel;
     btnPDV: TButton;
-    btnTeste: TButton;
-    procedure btnTesteClick(Sender: TObject);
+    btnSair: TButton;
     procedure btnProdutosClick(Sender: TObject);
+    procedure btnVendasClick(Sender: TObject);
+    procedure btnPDVClick(Sender: TObject);
+    procedure btnSairClick(Sender: TObject);
   private
-    { Private declarations }
+
   public
-    { Public declarations }
+
   end;
 
 var
@@ -27,18 +30,49 @@ var
 implementation
 
 uses
-  Tela.CRUD.Base, Tela.Produtos.Crud;
+  Tela.Produtos.Crud, Tela.Vendas.Crud, Tela.PDV;
 
 {$R *.dfm}
 
 procedure TfrmInicio.btnProdutosClick(Sender: TObject);
+var
+  Frm: TfrmProdutos;
 begin
-  frmProdutos.ShowModal;
+  Frm := TfrmProdutos.Create(Self);
+  try
+    Frm.ShowModal;
+  finally
+    Frm.Free;
+  end;
 end;
 
-procedure TfrmInicio.btnTesteClick(Sender: TObject);
+procedure TfrmInicio.btnVendasClick(Sender: TObject);
+var
+  Frm: TfrmVendas;
 begin
-  frmCRUD.show
+  Frm := TfrmVendas.Create(Self);
+  try
+    Frm.ShowModal;
+  finally
+    Frm.Free;
+  end;
+end;
+
+procedure TfrmInicio.btnPDVClick(Sender: TObject);
+var
+  Frm: TfrmPDV;
+begin
+  Frm := TfrmPDV.Create(Self);
+  try
+    Frm.ShowModal;
+  finally
+    Frm.Free;
+  end;
+end;
+
+procedure TfrmInicio.btnSairClick(Sender: TObject);
+begin
+  Close;
 end;
 
 end.
