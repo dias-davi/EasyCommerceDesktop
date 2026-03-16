@@ -41,14 +41,18 @@ begin
     for Item in Venda.Itens do
     begin
       lQuery.SQL.Text :=
-        'INSERT INTO itens_venda (venda_id, produto_id, quantidade, preco_unitario) ' +
-        'VALUES (:vid, :pid, :qtd, :preco) RETURNING id';
-      lQuery.ParamByName('vid').AsInteger   := Venda.Id;
-      lQuery.ParamByName('pid').AsInteger   := Item.ProdutoId;
-      lQuery.ParamByName('qtd').AsInteger   := Item.Quantidade;
-      lQuery.ParamByName('preco').AsCurrency:= Item.PrecoUnitario;
+        'INSERT INTO itens_venda' +
+        '  (venda_id, produto_id, quantidade, preco_unitario) ' +
+        '  VALUES (:vid, :pid, :qtd, :preco) RETURNING id';
+      lQuery.ParamByName('vid').AsInteger := Venda.Id;
+      lQuery.ParamByName('pid').AsInteger := Item.ProdutoId;
+      lQuery.ParamByName('qtd').AsInteger := Item.Quantidade;
+      lQuery.ParamByName('preco').AsCurrency := Item.PrecoUnitario;
+
       lQuery.Open;
+
       Item.Id := lQuery.Fields[0].AsInteger;
+
       lQuery.Close;
     end;
   finally
@@ -66,10 +70,12 @@ begin
     lQuery.SQL.Text :=
       'INSERT INTO vendas (data_venda, cliente, total) ' +
       'VALUES (:data, :cliente, :total) RETURNING id';
-    lQuery.ParamByName('data').AsDateTime   := Venda.Data;
-    lQuery.ParamByName('cliente').AsString  := Venda.Cliente;
-    lQuery.ParamByName('total').AsCurrency  := Venda.Total;
+    lQuery.ParamByName('data').AsDateTime := Venda.Data;
+    lQuery.ParamByName('cliente').AsString := Venda.Cliente;
+    lQuery.ParamByName('total').AsCurrency := Venda.Total;
+
     lQuery.Open;
+
     Venda.Id := lQuery.Fields[0].AsInteger;
 
   finally
@@ -85,10 +91,12 @@ begin
   lQuery := TFDQuery.Create(nil);
   try
     lQuery.Connection := FConn;
-    lQuery.SQL.Text := 'DELETE FROM itens_venda WHERE venda_id=:id';
+
+    lQuery.SQL.Text := 'DELETE FROM itens_venda WHERE venda_id = :id';
     lQuery.ParamByName('id').AsInteger := Id;
-    lQuery.ExecSQL;
-    lQuery.SQL.Text := 'DELETE FROM vendas WHERE id=:id';
+		lQuery.ExecSQL;
+
+    lQuery.SQL.Text := 'DELETE FROM vendas WHERE id = :id';
     lQuery.ParamByName('id').AsInteger := Id;
     lQuery.ExecSQL;
   finally
@@ -105,16 +113,19 @@ begin
   lQuery := TFDQuery.Create(nil);
   try
     lQuery.Connection := FConn;
+
     lQuery.SQL.Text := 'SELECT id, data_venda, cliente, total FROM vendas ORDER BY data_venda DESC';
     lQuery.Open;
     while not lQuery.Eof do
     begin
       lValor := TVenda.Create;
-      lValor.Id      := lQuery.FieldByName('id').AsInteger;
-      lValor.Data    := lQuery.FieldByName('data_venda').AsDateTime;
+      lValor.Id := lQuery.FieldByName('id').AsInteger;
+      lValor.Data := lQuery.FieldByName('data_venda').AsDateTime;
       lValor.Cliente := lQuery.FieldByName('cliente').AsString;
-      lValor.Total   := lQuery.FieldByName('total').AsCurrency;
+      lValor.Total := lQuery.FieldByName('total').AsCurrency;
+
       Result.Add(lValor);
+
       lQuery.Next;
     end;
   finally
